@@ -21,6 +21,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import br.com.zitrus.api.exceptions.BusinessException;
 import br.com.zitrus.api.exceptions.EntityNotFoundException;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 @ControllerAdvice
 public class ZitrusApiExceptionHandler extends ResponseEntityExceptionHandler {
 

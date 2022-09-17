@@ -6,6 +6,10 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 @JsonInclude(Include.NON_NULL)
 public class ErrorHandler {
 

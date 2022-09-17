@@ -13,6 +13,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 @Entity
 @Table(name = "product")
 public class Product {

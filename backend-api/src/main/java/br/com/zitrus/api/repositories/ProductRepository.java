@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import br.com.zitrus.api.entities.Product;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, UUID> {
 

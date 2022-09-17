@@ -23,6 +23,10 @@ import br.com.zitrus.api.entities.Product;
 import br.com.zitrus.api.mappers.ProductMapper;
 import br.com.zitrus.api.services.ProductService;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 @RestController
 @RequestMapping("/products")
 public class ProductController {

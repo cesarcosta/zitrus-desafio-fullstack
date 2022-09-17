@@ -11,6 +11,10 @@ import br.com.zitrus.api.exceptions.BusinessException;
 import br.com.zitrus.api.exceptions.EntityNotFoundException;
 import br.com.zitrus.api.repositories.ProductRepository;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 @Service
 public class ProductService {
 

@@ -11,6 +11,10 @@ import br.com.zitrus.api.dto.ProductRequest;
 import br.com.zitrus.api.dto.ProductResponse;
 import br.com.zitrus.api.entities.Product;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 @Component
 public class ProductMapper {
 
