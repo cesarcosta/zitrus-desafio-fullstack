@@ -1,15 +1,20 @@
 package br.com.zitrus.api.services;
 
+import static br.com.zitrus.api.util.IsNullUtil.isNullOrEmpty;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.zitrus.api.entities.Product;
+import br.com.zitrus.api.entities.ProductType;
 import br.com.zitrus.api.exceptions.BusinessException;
 import br.com.zitrus.api.exceptions.EntityNotFoundException;
 import br.com.zitrus.api.repositories.ProductRepository;
+import br.com.zitrus.api.repositories.ProductTypeRepository;
 
 /**
  * @author César Rangel - cesarrangelfonseca@gmail.com
@@ -20,6 +25,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private ProductTypeRepository productTypeRepository;
 	
 	public Product save(Product product) {
 		validate(product);
@@ -36,6 +44,7 @@ public class ProductService {
 		productExists.setDescription(product.getDescription());
 		productExists.setPrice(product.getPrice());
 		productExists.setQuantity(product.getQuantity());
+		productExists.setType(product.getType());
 		save(productExists);
 		return productExists;
 	}
@@ -54,6 +63,13 @@ public class ProductService {
 
 		if (codeAlreadyExists) {
 			throw new BusinessException("Já existe Produto cadastrado com este código!");
+		}
+		
+		if (!isNullOrEmpty(product.getType()) && !isNullOrEmpty(product.getType().getId())) {
+			Optional<ProductType> typeExists = productTypeRepository.findById(product.getType().getId());
+			if (typeExists.isEmpty()) {
+				throw new BusinessException("Tipo de Produto não encontrado!");
+			}
 		}
 	}
 }

@@ -1,10 +1,19 @@
 package br.com.zitrus.api.dto;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 17/09/2022
+ */
 public class ProductRequest {
 
+	@NotNull
+	private UUID productTypeId;
+	
 	@NotBlank
 	private String code;
 
@@ -16,6 +25,14 @@ public class ProductRequest {
 
 	@NotNull
 	private Double price;
+	
+	public UUID getProductTypeId() {
+		return productTypeId;
+	}
+	
+	public void setProductTypeId(UUID productTypeId) {
+		this.productTypeId = productTypeId;
+	}
 
 	public String getCode() {
 		return code;
@@ -51,6 +68,6 @@ public class ProductRequest {
 
 	@Override
 	public String toString() {
-		return "ProductRequest [code=" + code + ", description=" + description + ", quantity=" + quantity + ", price=" + price + "]";
+		return "ProductRequest [productTypeId=" + productTypeId + ", code=" + code + ", description=" + description + ", quantity=" + quantity + ", price=" + price + "]";
 	}
 }

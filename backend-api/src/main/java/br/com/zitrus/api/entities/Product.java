@@ -5,9 +5,12 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -25,6 +28,10 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, unique = true, nullable = false, columnDefinition = "uuid")
 	private UUID id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "type_id")
+	private ProductType type;
 	
 	@NotBlank
 	@Size(max = 30)
@@ -50,6 +57,14 @@ public class Product {
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+	
+	public ProductType getType() {
+		return type;
+	}
+	
+	public void setType(ProductType type) {
+		this.type = type;
 	}
 
 	public String getCode() {
