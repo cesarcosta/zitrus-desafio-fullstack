@@ -5,23 +5,23 @@ Construir uma aplicação RESTful para controle de estoque com no mínimo duas e
 Entidades:
 	
 	Produto:
-		• Código -ok
-		• Descrição -ok
-		• Tipo Produto (Eletrônico, eletrodoméstico, móvel)
-		• Valor no Fornecedor -ok
-		• Quantidade em estoque -ok
+		• Código -- OK!
+		• Descrição -- OK!
+		• Tipo Produto (Eletrônico, eletrodoméstico, móvel) -- OK!
+		• Valor no Fornecedor -- OK!
+		• Quantidade em estoque -- OK!
 
 	Movimento Estoque:
-		• Produto
-		• Tipo Movimentação (Entrada/Saída)
-		• Valor de venda
-		• Data de venda
-		• Quantidade movimentada
+		• Produto -- OK!
+		• Tipo Movimentação (Entrada/Saída) -- OK!
+		• Valor de venda -- OK!
+		• Data de venda -- OK!
+		• Quantidade movimentada -- OK!
 
 Uso de Tecnologias, escolha conforme opções abaixo.
 
 Tecnologias BackEnd:
-	• Java Spring Boot
+	• Java Spring Boot -- OK!
 
 Tecnologias FrontEnd:
 	• Vue.js
@@ -30,9 +30,9 @@ Tecnologias FrontEnd:
 
 
 O mínimo esperado da aplicação:
-	• Boas práticas de desenvolvimento e clean code;
+	• Boas práticas de desenvolvimento e clean code; -- OK!
 
-	• CRUD - (Create, Read, Update, Delete) de produtos;
+	• CRUD - (Create, Read, Update, Delete) de produtos; -- OK!
 
 	• Efetuar entrada e saída dos produtos no estoque. É importante validar o saldo ao efetuar uma saída do produto, caso não haja quantidade suficiente, deve ser retornado uma mensagem específica;
 
@@ -42,10 +42,9 @@ O mínimo esperado da aplicação:
 
 Não é obrigatório, mas se quiser surpreender:
 	• Teste unitário.
+	• Swagger
 
 Observações:
-	• Para facilitar a criação de uma aplicação utilizando Spring Boot, acesse o Spring Initializr(https://start.spring.io/). 
+	• Para facilitar a criação de uma aplicação utilizando Spring Boot, acesse o Spring Initializr(https://start.spring.io/).  -- OK!
 
-	• Para o banco de dados, uma sugestão é utilizar o H2 (banco de dados em memória), mas fique à vontade para utilizar o processo que achar mais adequado.
-
-	• Para submissão do caso de teste, utilize o github como repositório, e envie o link para o e-mail: lais.armond@zitrus.com.br
+	• Para o banco de dados, uma sugestão é utilizar o H2 (banco de dados em memória), mas fique à vontade para utilizar o processo que achar mais adequado. -- OK!
