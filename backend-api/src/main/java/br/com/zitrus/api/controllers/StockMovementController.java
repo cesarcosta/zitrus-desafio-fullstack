@@ -19,10 +19,10 @@ import br.com.zitrus.api.services.StockMovementService;
 @RestController
 @RequestMapping("/stock/movement")
 public class StockMovementController {
-	
+
 	@Autowired
 	private StockMovementService stockMovementService;
-	
+
 	@Autowired
 	private StockMovementMapper mapper;
 

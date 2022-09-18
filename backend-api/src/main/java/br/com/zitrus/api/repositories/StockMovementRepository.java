@@ -3,6 +3,7 @@ package br.com.zitrus.api.repositories;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.zitrus.api.entities.StockMovement;
@@ -14,4 +15,7 @@ import br.com.zitrus.api.entities.StockMovement;
 @Repository
 public interface StockMovementRepository extends JpaRepository<StockMovement, UUID> {
 
+	@Query("select sum(s.quantity) from StockMovement s where s.product.id = :productId and movementType = 'SAIDA'")
+	Double findQuantitySoldByProduct(UUID productId);
+	
 }
