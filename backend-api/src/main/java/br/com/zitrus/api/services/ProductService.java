@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.zitrus.api.entities.Product;
 import br.com.zitrus.api.entities.ProductType;
+import br.com.zitrus.api.enums.MovementType;
 import br.com.zitrus.api.exceptions.BusinessException;
 import br.com.zitrus.api.exceptions.EntityNotFoundException;
 import br.com.zitrus.api.repositories.ProductRepository;
@@ -56,6 +57,13 @@ public class ProductService {
 	public void remove(UUID id) {
 		Product product = findById(id);
 		productRepository.delete(product);
+	}
+	
+	public void updateStock(UUID id, MovementType movementType, Double quantity) {
+		Product product = findById(id);
+		Double quantityUpdated = movementType.equals(MovementType.ENTRADA) ? product.getQuantity() + quantity : product.getQuantity() - quantity; 
+		product.setQuantity(quantityUpdated);
+		productRepository.save(product);
 	}
 	
 	private void validate(Product product) {

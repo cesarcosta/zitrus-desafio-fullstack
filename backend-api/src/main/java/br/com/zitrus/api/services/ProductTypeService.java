@@ -50,7 +50,7 @@ public class ProductTypeService {
 		List<Product> productsByType = productRepository.findByProductType(productType.getId());
 
 		if (!isNullOrEmpty(productsByType)) {
-			throw new BusinessException("Não é possível a exlusão do Tipo! Existem produtos relacioanados com ele!");
+			throw new BusinessException("Não é possível a exclusão do Tipo! Existem produtos relacioanados com ele!");
 		}
 		
 		productTypeRepository.delete(productType);
