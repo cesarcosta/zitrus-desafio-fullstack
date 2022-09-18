@@ -30,6 +30,12 @@ public class ProductType {
 	@Column
 	private String description;
 
+	public ProductType() {}
+	
+	public ProductType(UUID id) {
+		this.id = id;
+	}
+
 	public UUID getId() {
 		return id;
 	}

@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import br.com.zitrus.api.dto.ProductStockReportResponse;
@@ -72,10 +73,10 @@ public class ProductService {
 		productRepository.save(product);
 	}
 	
-	public List<ProductStockReportResponse> findProducts() {
+	public List<ProductStockReportResponse> findProductsByType(UUID productTypeId) {
 		List<ProductStockReportResponse> result = new ArrayList<>();
 		
-		List<Product> products = listAll();
+		List<Product> products = findAllByProductType(productTypeId);
 		
 		if (!isNullOrEmpty(products)) {
 			for (Product product : products) {
@@ -100,6 +101,16 @@ public class ProductService {
 				throw new BusinessException("Tipo de Produto não encontrado!");
 			}
 		}
+	}
+	
+	private List<Product> findAllByProductType(UUID productTypeId) {
+		Product productQuery = new Product();
+		if (!isNullOrEmpty(productTypeId)) {
+			productQuery.setType(new ProductType(productTypeId));
+		}
+		
+		List<Product> products = productRepository.findAll(Example.of(productQuery));
+		return products;
 	}
 	
 	private ProductStockReportResponse createFromProduct(Product product, Double quantitySoldByProduct) {
