@@ -27,4 +27,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 	@Query("select p.id as productId, p.description as description, p.code as code, tp.id as productTypeId, tp.description as productType, p.quantity as quantityAvailable, sum(sp.quantity) as quantitySold "
 			+ "from StockMovement sp left join sp.product p left join p.type tp where 1 = 1 and (:typeId is null or tp.id = :typeId ) group by p.id ")
 	List<ProductReportStockQuantity> getProductsByTypeWithStock(@Param("typeId") UUID typeId);
+	
+	List<Product> findByDescriptionContainingIgnoreCase(String description);
 }
