@@ -2,6 +2,7 @@ package br.com.zitrus.api.services;
 
 import static br.com.zitrus.api.util.IsNullUtil.isNullOrEmpty;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import br.com.zitrus.api.enums.MovementType;
 import br.com.zitrus.api.exceptions.BusinessException;
 import br.com.zitrus.api.repositories.ProductRepository;
 import br.com.zitrus.api.repositories.StockMovementRepository;
+import br.com.zitrus.api.repositories.projections.ProductReportSale;
 
 /**
  * @author César Rangel - cesarrangelfonseca@gmail.com
@@ -40,6 +42,10 @@ public class StockMovementService {
 		return movement;
 	}
 	
+	public List<ProductReportSale> listProducts(String productDescription) {
+		return stockMovementRepository.getMovementsByProduct(productDescription);
+	}
+	
 	private void validate(StockMovement movement) {
 		if (!isNullOrEmpty(movement.getProduct()) && !isNullOrEmpty(movement.getProduct().getId())) {
 			Optional<Product> product = productRepository.findById(movement.getProduct().getId());
@@ -55,13 +61,4 @@ public class StockMovementService {
 			}
 		}
 	}
-
-	// post /movement --> productID / movementType / quantity / price
-	
-	// Caso movementType === 'ENTRADA', adicionar a quantidade na entidade Product;
-
-	// Caso quantityProduto > quantitySaida -- realizar baixa e diminuir quantidade na entidade Product;
-
-	// Caso movementType === 'SAIDA', É importante validar o saldo, caso não haja quantidade suficiente, deve ser retornado uma mensagem específica;
-	
 }
