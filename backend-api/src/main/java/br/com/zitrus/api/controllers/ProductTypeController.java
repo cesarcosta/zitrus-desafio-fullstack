@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zitrus.api.dto.ProductTypeRequest;
@@ -41,8 +42,8 @@ public class ProductTypeController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<ProductTypeResponse>> list() {
-		List<ProductType> types = productTypeService.listAll();
+	public ResponseEntity<List<ProductTypeResponse>> list(@RequestParam(value = "description", required = false) String description) {
+		List<ProductType> types = productTypeService.listAll(description);
 		return ResponseEntity.ok(mapper.toCollectionModel(types));
 	}
 	

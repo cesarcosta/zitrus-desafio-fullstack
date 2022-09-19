@@ -1,5 +1,6 @@
 package br.com.zitrus.api.repositories;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,4 +17,6 @@ import br.com.zitrus.api.entities.ProductType;
 public interface ProductTypeRepository extends JpaRepository<ProductType, UUID> {
 
 	Optional<ProductType> findByDescription(String description);
+	
+	List<ProductType> findByDescriptionContainingIgnoreCase(String description);
 }
