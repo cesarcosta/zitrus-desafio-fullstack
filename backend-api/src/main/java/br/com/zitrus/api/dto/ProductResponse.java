@@ -11,6 +11,8 @@ public class ProductResponse {
 	private UUID id;
 	
 	private UUID productTypeId;
+
+	private String productTypeDescription;
 	
 	private String code;
 	
@@ -34,6 +36,14 @@ public class ProductResponse {
 	
 	public void setProductTypeId(UUID productTypeId) {
 		this.productTypeId = productTypeId;
+	}
+
+	public String getProductTypeDescription() {
+		return productTypeDescription;
+	}
+
+	public void setProductTypeDescription(String productType) {
+		this.productTypeDescription = productType;
 	}
 
 	public String getCode() {
