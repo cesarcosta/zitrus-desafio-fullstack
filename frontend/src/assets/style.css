@@ -53,6 +53,10 @@ div.container {
   background: #ddd;
 }
 
+.info:disabled {
+  background: #8dbee7;
+}
+
 table {
   margin-top: 20px;
   border-collapse: collapse;
@@ -73,46 +77,127 @@ td, th {
 }
 
 .tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  position:relative; /* making the .tooltip span a container for the tooltip text */
 }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: #555;
+.tooltip:before {
+  content: attr(data-text); /* here's the magic */
+  position:absolute;
+  
+  /* vertically center */
+  top:50%;
+  transform:translateY(-50%);
+  
+  /* move to right */
+  right:100%;
+  margin-right:5px; /* and add a small left margin */
+  
+  /* basic styles */
+  width:100px;
+  padding:5px;
+  border-radius:10px;
+  background:#000;
   color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
+  font-size: 14px;
+  text-align:center;
 
-  /* Position the tooltip text */
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-
-  /* Fade in tooltip */
-  opacity: 0;
-  transition: opacity 0.3s;
+  display:none; /* hide by default */
 }
 
-/* Tooltip arrow */
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+.tooltip:hover:before {
+  display:block;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
+/* The Modal (background) */
+.modal {
+  display: block;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 0px;
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -5px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+div.modal-header {
+  background-color: #e7e7e7;
+  padding: 15px;
+  margin: 0px;
+}
+
+div.modal-body {
+  padding: 15px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+div.alert {
+  padding: 15px;
+  background-color: #f44336; /* Red */
+  color: white;
+  font-weight: 600;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+div.alert-success {
+  background-color: #04AA6D; /* Red */
+}
+
+div.alert-error {
+  background-color: #FA5447; /* Red */
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+a.icon-option {
+  cursor: pointer;
+}
+
+.text-right {
+  text-align: right;
 }
