@@ -93,13 +93,22 @@
           <div class="form-group">
             <label>Preço</label>
             <div class="input-container">
-              <CurrencyInput class="input-field" v-model="product.price" :options="{ currency: 'BRL' }" />
+              <CurrencyInput class="input-field" v-model.number="product.price" :options="{ locale: 'pt-BR',
+                currency: 'BRL',
+                currencyDisplay: 'symbol',
+                precision: 2,
+                hideCurrencySymbolOnFocus: true,
+                hideGroupingSeparatorOnFocus: true,
+                hideNegligibleDecimalDigitsOnFocus: true,
+                autoDecimalDigits: false,
+                useGrouping: true,
+                accountingSign: false }" />
             </div>
           </div>
 
           <div class="modal-footer text-right">
             <button type="button" class="btn default" @click="closeModalForm">Fechar</button>
-            <button class="btn info" type="submit">Salvar</button>
+            <button class="btn info" type="submit" :disabled="!isFormInvalid">Salvar</button>
           </div>
         </form>
       </div>
@@ -129,7 +138,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { api } from '../services/api'
 import { formatMoney } from '../utils/formatUtil'
 import AppMessage from '@/components/AppMessage.vue'
@@ -162,12 +171,19 @@ export default {
       code: '',
       description: '',
       quantity: null,
-      price: 0
+      price: null
     })
-
-   
+    
 
     const types = ref([])
+
+    const isFormInvalid = computed(() => 
+      product.value.code
+      && product.value.description
+      && product.value.price
+      && product.value.quantity
+      && product.value.productTypeId
+    )
 
     const search = async () => {
       const response = await api.get(`/products?description=${filter.value}`)
@@ -181,7 +197,6 @@ export default {
       } catch (error) {
         messageError.value = error?.response?.data?.titulo
       }
-
     }
 
     const submitForm = async () => {
@@ -228,11 +243,11 @@ export default {
       }
     }
 
-     const openModalForm = (productEdit) => {
+     const openModalForm = async (productEdit) => {
       showModalForm.value = true
        clearMessages()
-       loadProductTypes()
-
+       await loadProductTypes()
+      
       if (productEdit) {
         product.value = Object.assign({}, productEdit)
       }
@@ -264,7 +279,8 @@ export default {
     }
 
     onMounted(async () => {
-     await search();
+      await loadProductTypes();
+      await search();
     })
 
     return {
@@ -277,14 +293,15 @@ export default {
       messageError,
       productId, 
       types,
+      isFormInvalid,
       openModalForm,
       closeModalForm,
       search,
       formatMoney,
-       submitForm,
+      submitForm,
       openModalDelete,
       closeModalDelete,
-      deleteProduct
+      deleteProduct,
     }
   }
 }
