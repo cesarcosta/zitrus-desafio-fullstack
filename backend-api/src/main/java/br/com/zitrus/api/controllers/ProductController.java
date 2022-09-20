@@ -46,8 +46,10 @@ public class ProductController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<ProductResponse>> list(@RequestParam(value = "description", required = false) String description) {
-		List<Product> products = productService.listAll(description);
+	public ResponseEntity<List<ProductResponse>> list(
+			@RequestParam(value = "description", required = false) String description,
+			@RequestParam(value = "type", required = false) UUID typeId) {
+		List<Product> products = productService.listAll(description, typeId);
 		return ResponseEntity.ok(mapper.toCollectionModel(products));
 	}
 	

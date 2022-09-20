@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import br.com.zitrus.api.entities.Product;
@@ -36,11 +37,16 @@ public class ProductService {
 		return productRepository.save(product);
 	}
 	
-	public List<Product> listAll(String description) {
+	public List<Product> listAll(String description, UUID typeId) {
+		Product product = new Product();
+
 		if (!isNullOrEmpty(description)) {
 			return productRepository.findByDescriptionContainingIgnoreCase(description);
+		} else if (!isNullOrEmpty(typeId)) {
+			product.setType(new ProductType(typeId));
 		}
-		return productRepository.findAll();
+
+		return productRepository.findAll(Example.of(product));
 	}
 	
 	public Product update(UUID id, Product product) {
