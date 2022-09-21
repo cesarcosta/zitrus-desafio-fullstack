@@ -8,7 +8,11 @@
       <button class="btn info" @click="openModalForm">Novo</button>
     </div>
 
-    <div style="overflow-x:auto;" v-if="products.length > 0">
+    <div v-if="loading">
+      <img src="@/assets/loading.gif" width="24" height="24" style="vertical-align: middle;"> Carregando...
+    </div>
+
+    <div style="overflow-x:auto;" v-else-if="products.length > 0">
       <table>
         <thead>
           <tr>
@@ -151,6 +155,8 @@ export default {
     CurrencyInput
   },
   setup() {
+    const loading = ref(false)
+
     const showModalForm = ref(false)
 
     const showModalDelete = ref(false)
@@ -186,8 +192,14 @@ export default {
     )
 
     const search = async () => {
-      const response = await api.get(`/products?description=${filter.value}`)
-      products.value = response.data
+      try {
+        loading.value = true
+        const response = await api.get(`/products?description=${filter.value}`)
+        products.value = response.data
+        loading.value = false
+      } catch (error) {
+        loading.value = false
+      }
     }
 
     const loadProductTypes = async () => {
@@ -294,6 +306,7 @@ export default {
       productId, 
       types,
       isFormInvalid,
+      loading,
       openModalForm,
       closeModalForm,
       search,

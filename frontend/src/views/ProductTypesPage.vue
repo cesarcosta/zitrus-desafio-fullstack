@@ -8,7 +8,11 @@
       <button class="btn info" @click="openModal">Novo</button>
     </div>
 
-    <div style="overflow-x:auto;" v-if="types.length > 0">
+    <div v-if="loading">
+      <img src="@/assets/loading.gif" width="24" height="24" style="vertical-align: middle;"> Carregando...
+    </div>
+
+    <div style="overflow-x:auto;" v-else-if="types.length > 0">
       <table>
         <thead>
           <tr>
@@ -102,6 +106,8 @@ export default {
     AppMessage
   },
   setup() {
+    const loading = ref(false)
+
     const showModal = ref(false)
 
     const showModalDelete = ref(false)
@@ -122,8 +128,14 @@ export default {
     })
 
     const search = async () => {
-      const response = await api.get(`/types?description=${filter.value}`)
-      types.value = response.data
+      try {
+        loading.value = true
+        const response = await api.get(`/types?description=${filter.value}`)
+        types.value = response.data
+        loading.value = false
+      } catch (error) {
+        loading.value = false
+      }
     }
 
     const submitForm = async () => {
@@ -213,6 +225,7 @@ export default {
       messageSuccess, 
       messageError,
       productTypeId, 
+      loading, 
       openModal,
       closeModal, 
       search,

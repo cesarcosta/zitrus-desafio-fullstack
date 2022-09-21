@@ -11,7 +11,11 @@
       </div>
     </div>
 
-		<div style="overflow-x:auto;" v-if="products.length > 0">
+    <div v-if="loading">
+      <img src="@/assets/loading.gif" width="24" height="24" style="vertical-align: middle;"> Carregando...
+    </div>
+
+		<div style="overflow-x:auto;" v-else-if="products.length > 0">
       <table>
         <thead>
           <tr>
@@ -122,6 +126,8 @@ export default {
     AppMessage
   },
   setup() {
+    const loading = ref(false)
+
     const products = ref([])
 
     const types = ref([])
@@ -151,8 +157,14 @@ export default {
     const messageError = ref('')
 
     const search = async () => {
-      const response = await api.get(`/products/report/stock?type=${productTypeId.value}`)
-      products.value = response.data
+      try {
+        loading.value = true
+        const response = await api.get(`/products/report/stock?type=${productTypeId.value}`)
+        products.value = response.data
+        loading.value = false
+      } catch (error) {
+        loading.value = false
+      }
     }
 
     const submitForm = async () => {
@@ -218,6 +230,7 @@ export default {
       messageError,
       movement,
       productInfo,
+      loading,
       formatMoney,
       search,
       submitForm,
