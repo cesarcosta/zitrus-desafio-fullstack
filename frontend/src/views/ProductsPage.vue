@@ -267,6 +267,16 @@ export default {
 
     const closeModalForm = async () => {
       showModalForm.value = false;
+
+      product.value = {
+        id: '',
+        productTypeId: '',
+        code: '',
+        description: '',
+        quantity: null,
+        price: null
+      }
+
       if (messageSuccess.value) {
         await search()
       }
