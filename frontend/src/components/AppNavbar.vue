@@ -4,6 +4,7 @@
     <router-link to="/products">Produtos</router-link>
     <router-link to="/types">Tipos de Produto</router-link>
     <router-link to="/movements">Movimentações</router-link>
+    <router-link to="/sales">Meus Lucros</router-link>
   </div> 
 </template>
 
