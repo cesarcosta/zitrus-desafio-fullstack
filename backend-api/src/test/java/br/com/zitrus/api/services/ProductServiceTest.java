@@ -20,6 +20,10 @@ import br.com.zitrus.api.enums.MovementType;
 import br.com.zitrus.api.exceptions.EntityNotFoundException;
 import br.com.zitrus.api.repositories.ProductRepository;
 
+/**
+ * @author César Rangel - cesarrangelfonseca@gmail.com
+ * @since 21/09/2022
+ */
 @ExtendWith(SpringExtension.class)
 public class ProductServiceTest {
 	
@@ -127,35 +131,6 @@ public class ProductServiceTest {
 
 		Assertions.assertThat(productSaved.getQuantity()).isEqualTo(3d);
 	}
-
-	
-
-	
-	/*
-	 * 
-	 * public void remove(UUID id) {
-	 * Product product = findById(id);
-	 * productRepository.delete(product);
-	 * }
-	 * 
-	 * public Product findById(UUID id) {
-	 * return productRepository.findById(id).orElseThrow(() -> new
-	 * EntityNotFoundException("Produto não encontrado!"));
-	 * }
-	 */
-
-	/**
-	public List<Product> listAll(String description, UUID typeId) {
-		Product product = new Product();
-
-		if (!isNullOrEmpty(description)) {
-			return productRepository.findByDescriptionContainingIgnoreCase(description);
-		} else if (!isNullOrEmpty(typeId)) {
-			product.setType(new ProductType(typeId));
-		}
-
-		return productRepository.findAll(Example.of(product));
-	}**/
 
 	private Product createProduct() {
 		Product product = new Product();
