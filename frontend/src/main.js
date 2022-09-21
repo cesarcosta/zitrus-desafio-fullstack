@@ -13,8 +13,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
 import { faMoneyBillTrendUp } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 
-library.add(faTrash, faPencil, faMoneyBillTrendUp)
+library.add(faTrash, faPencil, faMoneyBillTrendUp, faBars)
 
 createApp(App).use(router).use(VueMask).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
