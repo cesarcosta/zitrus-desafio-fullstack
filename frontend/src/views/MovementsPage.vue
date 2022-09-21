@@ -104,7 +104,7 @@
           
           <div class="modal-footer text-right">
             <button type="button" class="btn default m-r-sm" @click="closeModalMovementForm">Fechar</button>
-            <button class="btn info" type="submit">Salvar</button>
+            <button class="btn info" type="submit" :disabled="!isFormInvalid">Salvar</button>
           </div>
         </form>
       </div>
@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { api } from '../services/api'
 import { formatMoney } from '../utils/formatUtil'
 import CurrencyInput from '@/components/CurrencyInput.vue'
@@ -136,8 +136,8 @@ export default {
       productId: '',
       date: '',
       type: 'ENTRADA',
-      quantity: null,
-      total: null
+      quantity: 0,
+      total: 0
     })
 
     const productInfo = ref({
@@ -155,6 +155,10 @@ export default {
     const messageSuccess = ref('');
 
     const messageError = ref('')
+
+    const isFormInvalid = computed(() => 
+      movement.value.quantity > 0 && movement.value.total > 0
+    )
 
     const search = async () => {
       try {
@@ -174,6 +178,7 @@ export default {
         await api.post(`/stock/movement`, movement.value)
 
         messageSuccess.value = 'Movimentação criada com sucesso!'
+
         movement.value = {
           productId: '',
           date: '',
@@ -231,6 +236,7 @@ export default {
       movement,
       productInfo,
       loading,
+      isFormInvalid,
       formatMoney,
       search,
       submitForm,
