@@ -20,6 +20,6 @@ public interface StockMovementRepository extends JpaRepository<StockMovement, UU
 
 	@Query("select p.id as productId, p.description as description, tp.id as productTypeId, tp.description as productType, p.price as price, "
 			+ "sum(sp.total) as totalSold, sum(sp.quantity) as quantitySold from StockMovement sp left join sp.product p left join p.type tp "
-			+ "where 1 = 1 and lower(p.description) like %:description% group by p.id ")
-	List<ProductReportSale> getMovementsByProduct(@Param("description") String description);
+			+ "where 1 = 1 and (:typeId is null or tp.id = :typeId) group by p.id ")
+	List<ProductReportSale> getMovementsByProduct(@Param("typeId") UUID typeId);
 }

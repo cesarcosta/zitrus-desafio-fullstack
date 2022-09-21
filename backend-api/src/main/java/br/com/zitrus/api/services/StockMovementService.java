@@ -4,6 +4,7 @@ import static br.com.zitrus.api.util.IsNullUtil.isNullOrEmpty;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,8 @@ public class StockMovementService {
 		return movement;
 	}
 	
-	public List<ProductReportSale> listProducts(String productDescription) {
-		return stockMovementRepository.getMovementsByProduct(productDescription);
+	public List<ProductReportSale> listProducts(UUID typeId) {
+		return stockMovementRepository.getMovementsByProduct(typeId);
 	}
 	
 	private void validate(StockMovement movement) {

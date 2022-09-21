@@ -47,8 +47,8 @@ public class ProductReportController {
 	}
 	
 	@GetMapping("/movements")
-	public ResponseEntity<List<ProductStockMovementReportResponse>> listMovements(@RequestParam(value = "product", required = false, defaultValue = "%%") String product) {
-		List<ProductReportSale> itens = stockMovementService.listProducts(!isNullOrEmpty(product) ? product : null);
+	public ResponseEntity<List<ProductStockMovementReportResponse>> listMovements(@RequestParam(value = "type", required = false) UUID type) {
+		List<ProductReportSale> itens = stockMovementService.listProducts(type);
 		return ResponseEntity.ok(productStockMovementMapper.toCollectionModel(itens));
 	}
 }
