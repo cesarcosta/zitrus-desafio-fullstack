@@ -17,16 +17,18 @@
           <tr>
             <th>Tipo de Produto</th>
             <th>Descrição</th>
-            <th class="text-center">Quantidade</th>
-            <th>Preço</th>
+            <th class="text-center">Quantidade Disponível</th>
+            <th class="text-center">Quantidade Vendida</th>
+            <th class="text-center">Preço</th>
             <th width="10%" class="text-center">Opções</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in products" :key="item.id">
-            <td>{{item.productTypeDescription}}</td>
+            <td>{{item.productType}}</td>
             <td>{{item.description}}</td>
-            <td class="text-center">{{item.quantity}}</td>
+            <td class="text-center">{{item.quantityAvailable}}</td>
+            <td class="text-center">{{item.quantitySold}}</td>
             <td class="text-right">{{item.price ? formatMoney(item.price) : ''}}</td>
             <td class="text-center">
               <a style="margin-right: 10px;" @click="openModalMovementForm(item)" class="icon-option tooltip" data-text="Movimentar">
@@ -51,6 +53,7 @@
         <app-message :message="messageError" :error="true" v-if="messageError"></app-message>
 
         <form @submit.prevent="submitForm">
+          
           <div class="form-group m-b-sm">
             <label>Produto:</label>
             {{productInfo.description}}
@@ -58,7 +61,7 @@
 
           <div class="form-group m-b-sm">
             <label>Quantidade em Estoque:</label>
-            {{productInfo.quantity}}
+            {{productInfo.quantityAvailable}}
           </div>
           
           <div class="form-group m-b-sm">
@@ -132,10 +135,11 @@ export default {
     })
 
     const productInfo = ref({
+      productId: '',
       description: '',
       quantity: null,
       price: null,
-      productTypeDescription: ''
+      productType: ''
     })
 
     const productTypeId = ref('')
@@ -147,14 +151,14 @@ export default {
     const messageError = ref('')
 
     const search = async () => {
-      const response = await api.get(`/products?type=${productTypeId.value}`)
+      const response = await api.get(`/products/report/stock?type=${productTypeId.value}`)
       products.value = response.data
     }
 
     const submitForm = async () => {
       try {
-        console.log(movement.value);
         clearMessages();
+        
         await api.post(`/stock/movement`, movement.value)
 
         messageSuccess.value = 'Movimentação criada com sucesso!'
@@ -189,7 +193,7 @@ export default {
 
       productInfo.value = Object.assign({}, product);
 
-      movement.value.productId = product.id
+      movement.value.productId = product.productId
     }
 
     const closeModalMovementForm = async () => {
