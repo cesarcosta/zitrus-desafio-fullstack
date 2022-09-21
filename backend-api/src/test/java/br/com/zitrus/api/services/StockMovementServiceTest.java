@@ -1,5 +1,6 @@
 package br.com.zitrus.api.services;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import br.com.zitrus.api.entities.StockMovement;
 import br.com.zitrus.api.enums.MovementType;
 import br.com.zitrus.api.repositories.ProductRepository;
 import br.com.zitrus.api.repositories.StockMovementRepository;
+import br.com.zitrus.api.repositories.projections.ProductReportSale;
 
 @ExtendWith(SpringExtension.class)
 public class StockMovementServiceTest {
@@ -52,22 +54,35 @@ public class StockMovementServiceTest {
 
 		BDDMockito.doNothing().when(productService).updateStock(productSaved.getId(), movement.getMovementType(),
 				movement.getQuantity());
+
+		BDDMockito.when(stockMovementRepository.getMovementsByProduct(UUID.randomUUID()))
+				.thenReturn(Collections.emptyList());
+
 	}
 
 	@Test
-	@DisplayName("Save Product when Successfull")
-	public void save_PersistProduct_whenSuccessfull() {
+	@DisplayName("Save StockMovement when Successfull")
+	public void save_PersistStockMovement_whenSuccessfull() {
 		StockMovement movement = createStockMovement();
-		
+
 		Product productSaved = productRepository.save(createProduct());
-		
+
 		movement.setProduct(productSaved);
 
-		BDDMockito.when(productRepository.findById(UUID.fromString("33fb1c42-8a6b-4273-aa95-233e2bf195fd"))).thenReturn(Optional.of(productSaved));
+		BDDMockito.when(productRepository.findById(UUID.fromString("33fb1c42-8a6b-4273-aa95-233e2bf195fd")))
+				.thenReturn(Optional.of(productSaved));
 
 		StockMovement movementCreated = stockMovementService.create(movement);
 
 		Assertions.assertThat(movementCreated).isNotNull();
+	}
+	
+	@Test
+	@DisplayName("List Producs returns a empty list of StockMovement when no products found")
+	public void listProducts_ReturnsEmptyListProducs_whenNoProductsFound() {
+		List<ProductReportSale> listProducts = stockMovementService.listProducts(UUID.randomUUID());
+
+		Assertions.assertThat(listProducts).isEmpty();
 	}
 
 	private StockMovement createStockMovement() {
