@@ -21,4 +21,6 @@ public interface ProductReportStockQuantity {
 	public Double getQuantityAvailable();
 	
 	public Double getQuantitySold();
+
+	public Double getPrice();
 }

@@ -22,6 +22,8 @@ public class ProductStockReportResponse {
 	
 	private Double quantitySold;
 
+	private Double price;
+
 	public UUID getProductId() {
 		return productId;
 	}
@@ -76,6 +78,14 @@ public class ProductStockReportResponse {
 
 	public void setQuantitySold(Double quantitySold) {
 		this.quantitySold = quantitySold;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	@Override
