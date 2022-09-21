@@ -2,7 +2,7 @@
   <div class="container">
     <h3 class="weight">Zitrus - Desafio FullStack</h3>
 
-    <p>Aplicação desenvolvida como desafio para a Zitrus.</p>
+    <p>Aplicação desenvolvida como desafio para a Zitrus para a vaga de Desenvolvedor.</p>
 
     <p class="weight">Tecnologias utilizadas: </p>
 
