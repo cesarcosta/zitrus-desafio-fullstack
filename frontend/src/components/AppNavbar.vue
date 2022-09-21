@@ -1,5 +1,8 @@
 <template>
-   <div class="topnav">
+  <div class="container" style="margin-bottom: -30px;">
+    <img src="@/assets/logo.png" alt="" width="150" height="36">
+  </div>
+  <div class="topnav">
     <router-link to="/">Home</router-link>
     <router-link to="/products">Produtos</router-link>
     <router-link to="/types">Tipos de Produto</router-link>
