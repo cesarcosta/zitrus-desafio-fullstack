@@ -40,6 +40,10 @@
         Total Lucro: <span class="color-green">{{salesTotal ? formatMoney(salesTotal) : ''}}</span>
       </div>
     </div>
+
+    <div v-else>
+      Sem registros encontrados
+    </div>
 	</div>
 </template>
 
