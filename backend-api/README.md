@@ -16,7 +16,7 @@ Para a execução do projeto, é necessário clonar o projeto do GitHub num dire
 
 ```shell
 cd "diretorio de sua preferencia"
-git clone https://github.com/condessalovelace/mavenquickstart
+git clone https://github.com/cesarcosta/zitrus-desafio-fullstack
 ```
 
 #### Construção
