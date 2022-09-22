@@ -22,7 +22,7 @@ Para executar o projeto, será necessário instalar os seguintes programas:
 
 #### Desenvolvimento
 
-Para a execução do projeto, é necessário clonar o projeto do GitHub num diretório de sua preferência:
+Para a execução do projeto, é necessário clonar o projeto do GitHub num diretório de sua preferência, utilizando o terminal / cmd:
 
 ```shell
 cd "diretorio de sua preferencia"
@@ -68,7 +68,7 @@ Para executar o projeto, será necessário instalar os seguintes programas:
 
 #### Desenvolvimento
 
-Para a execução do projeto, é necessário clonar o projeto do GitHub num diretório de sua preferência:
+Para a execução do projeto, é necessário clonar o projeto do GitHub num diretório de sua preferência, utilizando o terminal / cmd:
 
 ```shell
 cd "diretorio de sua preferencia"
