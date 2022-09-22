@@ -57,6 +57,8 @@ Para acessar a aplicação:
 
 http://localhost:8080/products
 
+---
+
 ### Frontend
 
 Para executar o projeto, será necessário instalar os seguintes programas:
