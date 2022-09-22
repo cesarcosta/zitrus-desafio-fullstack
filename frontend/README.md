@@ -1,24 +1,41 @@
-# frontend
 
-## Project setup
-```
-yarn install
+# Zitrus - Desafio FullStack - Frontend
+
+Construir uma aplicação RESTful para controle de estoque com no mínimo duas entidades, como por exemplo: Produto e Movimento Estoque.
+
+### Frontend
+
+Para executar o projeto, será necessário instalar os seguintes programas:
+
+- [Node.js / NPM](https://nodejs.org/en/download/)
+- [Yarn](https://yarnpkg.com/getting-started/install)
+
+#### Desenvolvimento
+
+Para a execução do projeto, é necessário clonar o projeto do GitHub num diretório de sua preferência:
+
+```shell
+cd "diretorio de sua preferencia"
+git clone https://github.com/cesarcosta/zitrus-desafio-fullstack
+cd zitrus-desafio-fullstack/frontend
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+#### Construção
+
+Para instalar todas as dependências existentens no projeto, executar os comando abaixo:
+
+```shell
+yarn ou npm install
 ```
 
-### Compiles and minifies for production
+#### Iniciando Frontend
+
+Para iniciar o servidor da API, utilize o comando abaixo:
+
 ```
-yarn build
+yarn serve / npm run serve
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+Para acessar a aplicação: 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+http://localhost:8081
