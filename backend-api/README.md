@@ -1,50 +1,48 @@
-Desafio FullStack
+
+# Zitrus - Desafio FullStack - Backend Java API
 
 Construir uma aplicação RESTful para controle de estoque com no mínimo duas entidades, como por exemplo: Produto e Movimento Estoque.
 
-Entidades:
-	
-	Produto:
-		• Código -- OK!
-		• Descrição -- OK!
-		• Tipo Produto (Eletrônico, eletrodoméstico, móvel) -- OK!
-		• Valor no Fornecedor -- OK!
-		• Quantidade em estoque -- OK!
+### Backend
 
-	Movimento Estoque:
-		• Produto -- OK!
-		• Tipo Movimentação (Entrada/Saída) -- OK!
-		• Valor de venda -- OK!
-		• Data de venda -- OK!
-		• Quantidade movimentada -- OK!
+Para executar o projeto, será necessário instalar os seguintes programas:
 
-Uso de Tecnologias, escolha conforme opções abaixo.
+- [JDK 17: Necessário para executar o projeto Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Maven 3: Necessário para realizar o build do projeto Java](https://maven.apache.org/download.cgi)
 
-Tecnologias BackEnd:
-	• Java Spring Boot -- OK!
+#### Desenvolvimento
 
-Tecnologias FrontEnd:
-	• Vue.js
-	• Angular
-	• React
+Para a execução do projeto, é necessário clonar o projeto do GitHub num diretório de sua preferência:
 
+```shell
+cd "diretorio de sua preferencia"
+git clone https://github.com/condessalovelace/mavenquickstart
+```
 
-O mínimo esperado da aplicação:
-	• Boas práticas de desenvolvimento e clean code; -- OK!
+#### Construção
 
-	• CRUD - (Create, Read, Update, Delete) de produtos; -- OK!
+Para construir o projeto com o Maven, executar os comando abaixo:
 
-	• Efetuar entrada e saída dos produtos no estoque. É importante validar o saldo ao efetuar uma saída do produto, caso não haja quantidade suficiente, deve ser retornado uma mensagem específica;
+```shell
+mvn clean install
+```
 
-	• Consulta de produtos por tipo, com quantidade de saída e quantidade disponível;
+#### Testes
 
-	• Consulta de lucro por produto, exibindo a quantidade total de saída, e total do lucro (valor de venda – valor do fornecedor).
+Para rodar os testes, utilize o comando abaixo:
 
-Não é obrigatório, mas se quiser surpreender:
-	• Teste unitário.
-	• Swagger
+```
+mvn test
+```
 
-Observações:
-	• Para facilitar a criação de uma aplicação utilizando Spring Boot, acesse o Spring Initializr(https://start.spring.io/).  -- OK!
+#### Iniciando a API Backend
 
-	• Para o banco de dados, uma sugestão é utilizar o H2 (banco de dados em memória), mas fique à vontade para utilizar o processo que achar mais adequado. -- OK!
+Para iniciar o servidor da API, utilize o comando abaixo:
+
+```
+mvn spring-boot:run
+```
+
+Para acessar a aplicação: 
+
+http://localhost:8080/products
